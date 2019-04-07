@@ -1,0 +1,6 @@
+framework module Pods_SurveysList {
+  umbrella header "Pods-SurveysList-umbrella.h"
+
+  export *
+  module * { export * }
+}
