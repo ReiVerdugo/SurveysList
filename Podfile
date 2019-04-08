@@ -7,5 +7,6 @@ target 'SurveysList' do
   inhibit_all_warnings!
 
   pod 'Alamofire'
+  pod 'SDWebImage'
 
 end

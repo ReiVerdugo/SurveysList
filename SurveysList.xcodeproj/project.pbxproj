@@ -16,11 +16,11 @@
 		C5DF1F702259B1EB0033B8D7 /* SurveysListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F6F2259B1EB0033B8D7 /* SurveysListUITests.swift */; };
 		C5DF1F7F2259BBB40033B8D7 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F7E2259BBB40033B8D7 /* Survey.swift */; };
 		C5DF1F842259BCF70033B8D7 /* Surveys.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DF1F832259BCF70033B8D7 /* Surveys.storyboard */; };
-		C5DF1F8A2259C5690033B8D7 /* SurveyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F882259C5690033B8D7 /* SurveyCardCell.swift */; };
-		C5DF1F8B2259C5690033B8D7 /* SurveyCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DF1F892259C5690033B8D7 /* SurveyCardCell.xib */; };
 		C5DF1F8D2259C88E0033B8D7 /* SurveysService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F8C2259C88E0033B8D7 /* SurveysService.swift */; };
 		C5DF1F902259C92B0033B8D7 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F8F2259C92B0033B8D7 /* BaseService.swift */; };
-		C5DF1F982259D4E30033B8D7 /* SurveyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F972259D4E30033B8D7 /* SurveyTableViewController.swift */; };
+		C5DF1F982259D4E30033B8D7 /* SurveyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F972259D4E30033B8D7 /* SurveyPageViewController.swift */; };
+		C5DF1F9A225A37600033B8D7 /* SurveyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F99225A37600033B8D7 /* SurveyViewModel.swift */; };
+		C5DF1F9C225A420B0033B8D7 /* SurveyCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F9B225A420B0033B8D7 /* SurveyCardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +58,11 @@
 		C5DF1F712259B1EB0033B8D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5DF1F7E2259BBB40033B8D7 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		C5DF1F832259BCF70033B8D7 /* Surveys.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Surveys.storyboard; sourceTree = "<group>"; };
-		C5DF1F882259C5690033B8D7 /* SurveyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCardCell.swift; sourceTree = "<group>"; };
-		C5DF1F892259C5690033B8D7 /* SurveyCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurveyCardCell.xib; sourceTree = "<group>"; };
 		C5DF1F8C2259C88E0033B8D7 /* SurveysService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveysService.swift; sourceTree = "<group>"; };
 		C5DF1F8F2259C92B0033B8D7 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
-		C5DF1F972259D4E30033B8D7 /* SurveyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTableViewController.swift; sourceTree = "<group>"; };
+		C5DF1F972259D4E30033B8D7 /* SurveyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPageViewController.swift; sourceTree = "<group>"; };
+		C5DF1F99225A37600033B8D7 /* SurveyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewModel.swift; sourceTree = "<group>"; };
+		C5DF1F9B225A420B0033B8D7 /* SurveyCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +169,7 @@
 				C5DF1F8E2259C8A80033B8D7 /* API */,
 				C5DF1F822259BCDC0033B8D7 /* Views */,
 				C5DF1F812259BCD20033B8D7 /* Models */,
+				C5DF1F99225A37600033B8D7 /* SurveyViewModel.swift */,
 			);
 			path = Surveys;
 			sourceTree = "<group>";
@@ -185,8 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				C5DF1F832259BCF70033B8D7 /* Surveys.storyboard */,
-				C5DF1F882259C5690033B8D7 /* SurveyCardCell.swift */,
-				C5DF1F892259C5690033B8D7 /* SurveyCardCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,7 +233,8 @@
 		C5DF1F942259D47E0033B8D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C5DF1F972259D4E30033B8D7 /* SurveyTableViewController.swift */,
+				C5DF1F9B225A420B0033B8D7 /* SurveyCardViewController.swift */,
+				C5DF1F972259D4E30033B8D7 /* SurveyPageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -357,7 +357,6 @@
 				C5DF1F572259B1EB0033B8D7 /* Assets.xcassets in Resources */,
 				C5DF1F842259BCF70033B8D7 /* Surveys.storyboard in Resources */,
 				C5DF1F552259B1EA0033B8D7 /* Main.storyboard in Resources */,
-				C5DF1F8B2259C5690033B8D7 /* SurveyCardCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,12 +409,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SurveysList/Pods-SurveysList-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -429,12 +430,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5DF1F9C225A420B0033B8D7 /* SurveyCardViewController.swift in Sources */,
+				C5DF1F9A225A37600033B8D7 /* SurveyViewModel.swift in Sources */,
 				C5DF1F502259B1EA0033B8D7 /* AppDelegate.swift in Sources */,
 				C5DF1F8D2259C88E0033B8D7 /* SurveysService.swift in Sources */,
-				C5DF1F8A2259C5690033B8D7 /* SurveyCardCell.swift in Sources */,
 				C5DF1F902259C92B0033B8D7 /* BaseService.swift in Sources */,
 				C5DF1F7F2259BBB40033B8D7 /* Survey.swift in Sources */,
-				C5DF1F982259D4E30033B8D7 /* SurveyTableViewController.swift in Sources */,
+				C5DF1F982259D4E30033B8D7 /* SurveyPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
