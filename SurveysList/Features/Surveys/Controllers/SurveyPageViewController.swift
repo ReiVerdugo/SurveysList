@@ -12,17 +12,26 @@ class SurveyPageViewController: UIPageViewController {
   
   // MARK: Properties
   var surveys: [Survey] = []
-  var surveyPages: [SurveyCardViewController] = []
+  var pageDataSource: PageControllerDataSource?
+  lazy var pageControl = VerticalPageControl()
   
   // MARK: Lifecycle methods
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    dataSource = self
+    setupView()
     getSurveys()
   }
   
   // MARK: Class methods
+  func setupView() {
+    pageDataSource = PageControllerDataSource(items: [])
+    dataSource = pageDataSource
+    delegate = self
+    view.addSubview(pageControl)
+    pageControl.setupConstraints()
+    setNavigationBar(with: "Surveys".uppercased())
+  }
+  
   func getSurveys() {
     let service = SurveyService()
     service.getSurveys { [weak self] result in
@@ -42,9 +51,23 @@ class SurveyPageViewController: UIPageViewController {
       guard let surveyController = storyboard?.instantiateViewController(withIdentifier: "surveyView") as? SurveyCardViewController else { continue }
       let viewModel = SurveyViewModel(with: survey, index: index)
       surveyController.viewModel = viewModel
-      surveyPages.append(surveyController)
+      pageDataSource?.pages.append(surveyController)
     }
-    if let firstController = surveyPages.first {
+    moveToFirstPage()
+    setupPageControl()
+  }
+  
+  func setupPageControl() {
+    guard let pages = pageDataSource?.pages else { return }
+    pageControl.numberOfPages = pages.count
+    pageControl.currentPage = 0
+    pageControl.isHidden = false
+  }
+  
+  
+  
+  private func moveToFirstPage() {
+    if let firstController = pageDataSource?.pages.first {
       setViewControllers([firstController],
                          direction: .forward,
                          animated: false,
@@ -53,20 +76,13 @@ class SurveyPageViewController: UIPageViewController {
   }
 }
 
-extension SurveyPageViewController: UIPageViewControllerDataSource {
-  func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-    guard let index = (viewController as? SurveyCardViewController)?.pageIndex,
-      index > 0 else {
-        return nil
+extension SurveyPageViewController: UIPageViewControllerDelegate {
+  func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    if finished && completed,
+      let viewController = pageViewController.viewControllers?.first as? SurveyCardViewController,
+      let index = viewController.pageIndex {
+      pageControl.currentPage = index
     }
-    return surveyPages[index-1]
-  }
-  
-  func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-    guard let index = (viewController as? SurveyCardViewController)?.pageIndex,
-      index < surveyPages.count-1 else {
-        return nil
-    }
-    return surveyPages[index+1]
   }
 }
+
