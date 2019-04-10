@@ -58,5 +58,11 @@ class VerticalPageControl: UIPageControl {
     // Move page control to right side
     let rightMarginSpace = CGFloat((kPageControlWidth/2) - kPageControlRightMargin)
     self.transform = rotationTransform.translatedBy(x: 0, y: -rightMarginSpace)
+    isHidden = false
+    currentPage = 0
+  }
+  
+  func setNumberOfPages(_ number: Int) {
+    numberOfPages = number
   }
 }

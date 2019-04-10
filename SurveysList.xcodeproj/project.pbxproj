@@ -18,6 +18,7 @@
 		C523E4D5225E25AE007EE983 /* Survey+Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523E4D4225E25AE007EE983 /* Survey+Fixtures.swift */; };
 		C523E4DA225E26C5007EE983 /* Survey1.json in Resources */ = {isa = PBXBuildFile; fileRef = C523E4D9225E26C5007EE983 /* Survey1.json */; };
 		C523E4DD225E2987007EE983 /* VerticalPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523E4DC225E2986007EE983 /* VerticalPageControl.swift */; };
+		C523E4DF225E42C7007EE983 /* SurveyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523E4DE225E42C7007EE983 /* SurveyViewModelTests.swift */; };
 		C5DF1F502259B1EA0033B8D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F4F2259B1EA0033B8D7 /* AppDelegate.swift */; };
 		C5DF1F552259B1EA0033B8D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DF1F532259B1EA0033B8D7 /* Main.storyboard */; };
 		C5DF1F572259B1EB0033B8D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DF1F562259B1EB0033B8D7 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		C523E4D4225E25AE007EE983 /* Survey+Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Survey+Fixtures.swift"; sourceTree = "<group>"; };
 		C523E4D9225E26C5007EE983 /* Survey1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Survey1.json; sourceTree = "<group>"; };
 		C523E4DC225E2986007EE983 /* VerticalPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VerticalPageControl.swift; path = SurveysList/Features/Surveys/Views/VerticalPageControl.swift; sourceTree = SOURCE_ROOT; };
+		C523E4DE225E42C7007EE983 /* SurveyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewModelTests.swift; sourceTree = "<group>"; };
 		C5DF1F4C2259B1EA0033B8D7 /* SurveysList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveysList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DF1F4F2259B1EA0033B8D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5DF1F542259B1EA0033B8D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				C523E4D0225E24B3007EE983 /* SurveyTests.swift */,
+				C523E4DE225E42C7007EE983 /* SurveyViewModelTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 			files = (
 				C523E4D3225E2588007EE983 /* DataLoader.swift in Sources */,
 				C523E4D1225E24B3007EE983 /* SurveyTests.swift in Sources */,
+				C523E4DF225E42C7007EE983 /* SurveyViewModelTests.swift in Sources */,
 				C523E4D5225E25AE007EE983 /* Survey+Fixtures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,7 +17,7 @@ protocol BaseServiceProtocol {
 }
 
 class BaseService: BaseServiceProtocol {
-  let baseUrl = "​https://rallycoding.herokuapp.com/api/music_albums"
+  let baseUrl = "https://nimble-survey-api.herokuapp.com/"
   let headers: HTTPHeaders = [
     "Authorization": "Bearer d9584af77d8c0d6622e2b3c554ed520b2ae64ba0721e52daa12d6eaa5e5cdd93"
   ]
@@ -25,9 +25,8 @@ class BaseService: BaseServiceProtocol {
                              urlString: String,
                              parameters: [String: AnyObject]? = nil,
                              completion: @escaping (_ success: Result<T>) -> Void) {
-
-    
-    Alamofire.request("https://nimble-survey-api.herokuapp.com/surveys.json", method: method, parameters: parameters, headers: headers).responseJSON { response in
+    let url = baseUrl + urlString
+    Alamofire.request(url, method: method, parameters: parameters, headers: headers).responseJSON { response in
         switch response.result {
         case .success:
           let decoder = JSONDecoder()
