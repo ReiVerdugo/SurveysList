@@ -13,33 +13,25 @@ class SurveyPageViewController: UIPageViewController {
   // MARK: Properties
   var surveys: [Survey] = []
   var pageDataSource: PageControllerDataSource?
-  
-  let kPageControlWidth: CGFloat = 20
-  let kPageControlRightMargin: CGFloat = 8
-  let kPageControlHeight: CGFloat = 30
-  
-  lazy var pageControl: UIPageControl = {
-    let pageControl = UIPageControl()
-    pageControl.translatesAutoresizingMaskIntoConstraints = false
-    pageControl.pageIndicatorTintColor = UIColor.white.withAlphaComponent(0.6)
-    pageControl.isHidden = true
-    pageControl.isUserInteractionEnabled = false
-    return pageControl
-  }()
+  lazy var pageControl = VerticalPageControl()
   
   // MARK: Lifecycle methods
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    pageDataSource = PageControllerDataSource(items: [])
-    dataSource = pageDataSource
-    delegate = self
-    setupPageControlConstraints()
-    setNavigationBar(with: "Surveys".uppercased())
+    setupView()
     getSurveys()
   }
   
   // MARK: Class methods
+  func setupView() {
+    pageDataSource = PageControllerDataSource(items: [])
+    dataSource = pageDataSource
+    delegate = self
+    view.addSubview(pageControl)
+    pageControl.setupConstraints()
+    setNavigationBar(with: "Surveys".uppercased())
+  }
+  
   func getSurveys() {
     let service = SurveyService()
     service.getSurveys { [weak self] result in
@@ -72,40 +64,7 @@ class SurveyPageViewController: UIPageViewController {
     pageControl.isHidden = false
   }
   
-  func setupPageControlConstraints() {
-    self.view.addSubview(pageControl)
-    let views = ["pageControl": self.pageControl]
-    let metrics = ["pageControlWidth": kPageControlWidth,
-                   "pageControlRightMargin": kPageControlRightMargin,
-                   "pageControlHeight": kPageControlHeight]
-    var horizontalConstraints = NSLayoutConstraint.constraints(
-      withVisualFormat: "H:[pageControl(pageControlWidth)]-pageControlRightMargin-|",
-      options: [],
-      metrics: metrics,
-      views: views)
-    let verticalConstriants = NSLayoutConstraint.constraints(
-      withVisualFormat: "V:[pageControl(pageControlHeight)]",
-      options: [],
-      metrics: metrics,
-      views: views)
-    let centerConstraint = NSLayoutConstraint(
-      item: self.pageControl,
-      attribute: .centerY,
-      relatedBy: .equal,
-      toItem: self.view,
-      attribute: .centerY,
-      multiplier: 1.0,
-      constant: 0)
-    horizontalConstraints.append(centerConstraint)
-    NSLayoutConstraint.activate(horizontalConstraints + verticalConstriants)
-    
-    // Rotate page control to make it vertical
-    let rotationTransform = CGAffineTransform(rotationAngle: .pi/2)
-    // Move page control to right side
-    let rightMarginSpace = CGFloat((kPageControlWidth/2) - kPageControlRightMargin)
-    pageControl.transform = rotationTransform.translatedBy(x: 0, y: -rightMarginSpace)
-    
-  }
+  
   
   private func moveToFirstPage() {
     if let firstController = pageDataSource?.pages.first {
