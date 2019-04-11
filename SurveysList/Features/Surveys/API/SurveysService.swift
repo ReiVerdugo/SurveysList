@@ -9,8 +9,15 @@
 import Alamofire
 
 class SurveyService: BaseService {
-  func getSurveys(completion: @escaping (_ success: Result<[Survey]>) -> Void) {
-    request(HTTPMethod.get, urlString: "surveys.json", completion: completion)
+  func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ success: Result<[Survey]>) -> Void) {
+    var parameters: [String: AnyObject] = [:]
+    if let page = page {
+      parameters["page"] = page as AnyObject
+    }
+    if let perPage = perPage {
+      parameters["per_page"] = perPage as AnyObject
+    }
+    request(HTTPMethod.get, urlString: "surveys.json", parameters: parameters, completion: completion)
   }
 }
 
