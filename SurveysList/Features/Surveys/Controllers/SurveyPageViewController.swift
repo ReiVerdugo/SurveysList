@@ -20,7 +20,10 @@ class SurveyPageViewController: UIPageViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
-    getSurveys()
+    let authenticationService = AuthenticationService()
+    authenticationService.renewToken() { [weak self] in
+      self?.getSurveys()
+    }
   }
   
   // MARK: Class methods
