@@ -20,6 +20,7 @@
 		C523E4DD225E2987007EE983 /* VerticalPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523E4DC225E2986007EE983 /* VerticalPageControl.swift */; };
 		C523E4DF225E42C7007EE983 /* SurveyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523E4DE225E42C7007EE983 /* SurveyViewModelTests.swift */; };
 		C525E80F225F7ADE0077789D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525E80E225F7ADE0077789D /* AuthenticationService.swift */; };
+		C555B6D92261DA500029E5EC /* SurveyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555B6D82261DA500029E5EC /* SurveyDetailController.swift */; };
 		C569B40A225F99DB00E54E0D /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = C569B409225F99DB00E54E0D /* Token.swift */; };
 		C5DF1F502259B1EA0033B8D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF1F4F2259B1EA0033B8D7 /* AppDelegate.swift */; };
 		C5DF1F552259B1EA0033B8D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DF1F532259B1EA0033B8D7 /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 		C523E4DC225E2986007EE983 /* VerticalPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VerticalPageControl.swift; path = SurveysList/Features/Surveys/Views/VerticalPageControl.swift; sourceTree = SOURCE_ROOT; };
 		C523E4DE225E42C7007EE983 /* SurveyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewModelTests.swift; sourceTree = "<group>"; };
 		C525E80E225F7ADE0077789D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		C555B6D82261DA500029E5EC /* SurveyDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailController.swift; sourceTree = "<group>"; };
 		C569B409225F99DB00E54E0D /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		C5DF1F4C2259B1EA0033B8D7 /* SurveysList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveysList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DF1F4F2259B1EA0033B8D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				C518BFC0225CEFFF0037842F /* PageControllerDataSource.swift */,
 				C5DF1F9B225A420B0033B8D7 /* SurveyCardViewController.swift */,
 				C5DF1F972259D4E30033B8D7 /* SurveyPageViewController.swift */,
+				C555B6D82261DA500029E5EC /* SurveyDetailController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				C5DF1F7F2259BBB40033B8D7 /* Survey.swift in Sources */,
 				C5DF1F982259D4E30033B8D7 /* SurveyPageViewController.swift in Sources */,
 				C518BFBD225CE5570037842F /* RoundedView.swift in Sources */,
+				C555B6D92261DA500029E5EC /* SurveyDetailController.swift in Sources */,
 				C523E4DD225E2987007EE983 /* VerticalPageControl.swift in Sources */,
 				C518BFB9225CE1CD0037842F /* UIColor+Extension.swift in Sources */,
 				C525E80F225F7ADE0077789D /* AuthenticationService.swift in Sources */,

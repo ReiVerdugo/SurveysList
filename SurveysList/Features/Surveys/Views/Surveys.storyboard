@@ -55,6 +55,9 @@
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdr-Qo-i1a">
                                         <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <viewLayoutGuide key="safeArea" id="SCS-CM-Y5x"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2F-Tg-0sB">
@@ -62,6 +65,9 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="surveyTitle"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsg-PC-lyd">
                                         <rect key="frame" x="37.5" y="221.5" width="300" height="24"/>
@@ -80,7 +86,11 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
                                                 <color key="value" red="0.83529411764705885" green="0.066666666666666666" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="takeSurveyButton"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="takeTheSurveyTapped:" destination="05q-Kf-FP0" eventType="touchUpInside" id="dPb-fD-tlk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -126,6 +136,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTt-5t-FwF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1785" y="28"/>
+        </scene>
+        <!--Survey Detail Controller-->
+        <scene sceneID="1tH-Gk-2GF">
+            <objects>
+                <viewController storyboardIdentifier="surveyDetailVC" id="a3K-XY-ha7" customClass="SurveyDetailController" customModule="SurveysList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Nl-ZV-m5I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Ojw-yV-I0Y"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c9U-92-F5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2594" y="24"/>
         </scene>
     </scenes>
 </document>

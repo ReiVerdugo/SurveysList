@@ -39,5 +39,12 @@ class SurveyCardViewController: UIViewController {
     titleLabel?.textColor = .white
     descriptionLabel?.textColor = .white
   }
+  
+  @IBAction func takeTheSurveyTapped(_ sender: Any) {
+    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "surveyDetailVC") as! SurveyDetailController 
+    viewController.surveyViewModel = viewModel
+      navigationController?.pushViewController(viewController, animated: true)
+  }
+  
 
 }

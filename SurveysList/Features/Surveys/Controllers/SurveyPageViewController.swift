@@ -57,6 +57,7 @@ class SurveyPageViewController: UIPageViewController {
   @objc func refreshSurveys() {
     pageDataSource.pages.removeAll()
     currentPage = 1
+    pageControl.currentPage = 0
     getSurveys()
   }
   
