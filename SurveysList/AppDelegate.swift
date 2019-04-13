@@ -14,8 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    let storyboard = UIStoryboard(name: "Surveys", bundle: nil)
+    // Exit early if there are unit tests running
+    if NSClassFromString("XCTestCase") != nil {
+      return true
+    }
+    let storyboard = UIStoryboard(name: K.Storyboards.surveys.rawValue,
+                                  bundle: nil)
     let surveysList = storyboard.instantiateInitialViewController()
     window?.rootViewController = surveysList
     return true

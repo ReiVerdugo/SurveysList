@@ -8,7 +8,17 @@
 
 import Alamofire
 
-class SurveyService: BaseService {
+protocol SurveyServiceProtocol: class {
+  /// Requests the list of surveys, using page and perPage parameters if included
+  ///
+  /// - Parameters:
+  ///   - page: number of the current page for request (pagination)
+  ///   - perPage: number of elements to fetch on the request
+  ///   - completion: Completion block to execute after the request finished
+  func getSurveys(page: Int?, perPage: Int?, completion: @escaping (_ success: Result<[Survey]>) -> Void)
+}
+
+class SurveyService: BaseService, SurveyServiceProtocol {
   func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ success: Result<[Survey]>) -> Void) {
     var parameters: [String: AnyObject] = [:]
     if let page = page {

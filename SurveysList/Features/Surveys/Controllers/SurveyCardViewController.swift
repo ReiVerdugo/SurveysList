@@ -11,6 +11,7 @@ import SDWebImage
 
 class SurveyCardViewController: UIViewController {
 
+  // MARK: Properties
   @IBOutlet weak var titleLabel: UILabel?
   @IBOutlet weak var descriptionLabel: UILabel?
   @IBOutlet weak var surveyButton: RoundedButton?
@@ -18,6 +19,7 @@ class SurveyCardViewController: UIViewController {
   var pageIndex: Int?
   var viewModel: SurveyViewModel?
   
+  // MARK: Lifecycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
     if let viewModel = viewModel {
@@ -26,6 +28,7 @@ class SurveyCardViewController: UIViewController {
     setColors()
   }
   
+  // MARK: Class methods
   func configureView(with viewModel: SurveyViewModel) {
     titleLabel?.text = viewModel.name
     descriptionLabel?.text = viewModel.description
@@ -33,11 +36,19 @@ class SurveyCardViewController: UIViewController {
     pageIndex = viewModel.index
   }
   
-  func setColors() {
+  private func setColors() {
     surveyButton?.backgroundColor = .red1
     surveyButton?.setTitleColor(.white, for: .normal)
     titleLabel?.textColor = .white
     descriptionLabel?.textColor = .white
   }
+  
+  // MARK: Actions
+  @IBAction func takeTheSurveyTapped(_ sender: Any) {
+    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "surveyDetailVC") as! SurveyDetailController 
+    viewController.surveyViewModel = viewModel
+      navigationController?.pushViewController(viewController, animated: true)
+  }
+  
 
 }
