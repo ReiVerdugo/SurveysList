@@ -15,5 +15,4 @@ struct Token: Codable {
     case accessToken = "access_token"
     case tokenType = "token_type"
   }
-  
 }

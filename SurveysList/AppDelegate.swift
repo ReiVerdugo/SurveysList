@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if NSClassFromString("XCTestCase") != nil {
       return true
     }
-    let storyboard = UIStoryboard(name: "Surveys", bundle: nil)
+    let storyboard = UIStoryboard(name: K.Storyboards.surveys.rawValue,
+                                  bundle: nil)
     let surveysList = storyboard.instantiateInitialViewController()
     window?.rootViewController = surveysList
     return true

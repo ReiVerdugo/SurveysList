@@ -9,8 +9,10 @@
 import UIKit
 
 class SurveyDetailController: UIViewController {
+  // MARK: Properties
   var surveyViewModel: SurveyViewModel?
   
+  // MARK: Lifecycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
     setNavigationBar(with: surveyViewModel?.name ?? "")

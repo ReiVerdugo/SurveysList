@@ -9,13 +9,16 @@
 import UIKit
 
 class PageControllerDataSource: NSObject {
+  // MARK: Properties
   var pages: [SurveyCardViewController] = []
   
+  // MARK: Initializers
   init(items: [SurveyCardViewController]) {
     self.pages = items
   }
 }
 
+// MARK: UIPageViewControllerDataSource
 extension PageControllerDataSource: UIPageViewControllerDataSource {
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     guard let index = (viewController as? SurveyCardViewController)?.pageIndex,

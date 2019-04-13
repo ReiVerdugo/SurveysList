@@ -15,6 +15,8 @@ class SurveyPageViewController: UIPageViewController {
   lazy var pageControl = VerticalPageControl()
   var currentPage = 1
   let perPage = 5
+  var hasReachedEnd = false
+  var surveyService: SurveyServiceProtocol = SurveyService()
   
   // MARK: Lifecycle methods
   override func viewDidLoad() {
@@ -38,8 +40,9 @@ class SurveyPageViewController: UIPageViewController {
   }
   
   func getSurveys() {
-    let service = SurveyService()
-    service.getSurveys(page: currentPage, perPage: perPage)
+    if hasReachedEnd { return }
+    let loadingIndicator = startProgressIndicator()
+    surveyService.getSurveys(page: currentPage, perPage: perPage)
     { [weak self] result in
       guard let strongSelf = self else { return }
       switch result {
@@ -47,10 +50,13 @@ class SurveyPageViewController: UIPageViewController {
         strongSelf.populatePages(with: surveys)
         if surveys.count == strongSelf.perPage {
           strongSelf.currentPage += 1
+        } else {
+          strongSelf.hasReachedEnd = true
         }
       case .failure:
         break
       }
+      strongSelf.stopProgressIndicator(loadingIndicator)
     }
   }
   
@@ -69,7 +75,9 @@ class SurveyPageViewController: UIPageViewController {
   
   func populatePages(with surveys: [Survey]) {
     for survey in surveys {
-      guard let surveyController = storyboard?.instantiateViewController(withIdentifier: "surveyView") as? SurveyCardViewController else { continue }
+      guard let surveyController = storyboard?
+        .instantiateViewController(withIdentifier: K.ViewControllers.surveyView.rawValue)
+        as? SurveyCardViewController else { continue }
       let viewModel = SurveyViewModel(with: survey, index: pageDataSource.pages.count)
       surveyController.viewModel = viewModel
       pageDataSource.pages.append(surveyController)
@@ -88,12 +96,15 @@ class SurveyPageViewController: UIPageViewController {
   }
 }
 
+
+// MARK: - UIPageViewControllerDelegate
 extension SurveyPageViewController: UIPageViewControllerDelegate {
   func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
     if finished && completed,
       let viewController = pageViewController.viewControllers?.first as? SurveyCardViewController,
       let index = viewController.pageIndex {
       pageControl.currentPage = index
+      //
       if index == pageDataSource.pages.count - 1 {
         getSurveys()
       }

@@ -16,4 +16,16 @@ extension UIViewController {
     navigationController?.navigationBar.barStyle = .blackOpaque
     navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
   }
+  
+  func startProgressIndicator() -> UIActivityIndicatorView {
+    let activityView = UIActivityIndicatorView(style: .whiteLarge)
+    activityView.center = view.center
+    activityView.startAnimating()
+    view.addSubview(activityView)
+    return activityView
+  }
+  
+  func stopProgressIndicator(_ activityView: UIActivityIndicatorView) {
+    activityView.stopAnimating()
+  }
 }

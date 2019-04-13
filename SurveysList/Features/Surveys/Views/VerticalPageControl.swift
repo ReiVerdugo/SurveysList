@@ -9,12 +9,12 @@
 import UIKit
 
 class VerticalPageControl: UIPageControl {
-  
+  // MARK: Properties
   let kPageControlWidth: CGFloat = 20
   let kPageControlRightMargin: CGFloat = 8
   let kPageControlHeight: CGFloat = 30
 
-  
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +27,7 @@ class VerticalPageControl: UIPageControl {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: Class methods
   func setupConstraints() {
     let views = ["pageControl": self]
     let metrics = ["pageControlWidth": kPageControlWidth,
