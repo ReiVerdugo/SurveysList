@@ -13,17 +13,18 @@ class SurveyPageViewController: UIPageViewController {
   // MARK: Properties
   var pageDataSource: PageControllerDataSource!
   lazy var pageControl = VerticalPageControl()
-  var currentPage = 1
-  let perPage = 5
-  var hasReachedEnd = false
+  var currentPage = 1 // The current page requested on server
+  var currentSurvey = 0 // Current survey displayed
+  var hasReachedEnd = false // Tells if there are no more surveys available from server
+  let perPage = K.perPage // Number of items to request from server
   var surveyService: SurveyServiceProtocol = SurveyService()
+  var authService: AuthenticationServiceProtocol = AuthenticationService()
   
   // MARK: Lifecycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
-    let authenticationService = AuthenticationService()
-    authenticationService.renewToken() { [weak self] in
+    authService.renewToken() { [weak self] in
       self?.getSurveys()
     }
   }
@@ -43,18 +44,13 @@ class SurveyPageViewController: UIPageViewController {
     if hasReachedEnd { return }
     let loadingIndicator = startProgressIndicator()
     surveyService.getSurveys(page: currentPage, perPage: perPage)
-    { [weak self] result in
+    { [weak self] surveys in
       guard let strongSelf = self else { return }
-      switch result {
-      case .success(let surveys):
-        strongSelf.populatePages(with: surveys)
-        if surveys.count == strongSelf.perPage {
-          strongSelf.currentPage += 1
-        } else {
-          strongSelf.hasReachedEnd = true
-        }
-      case .failure:
-        break
+      strongSelf.populatePages(with: surveys)
+      if surveys.count == strongSelf.perPage {
+        strongSelf.currentPage += 1
+      } else {
+        strongSelf.hasReachedEnd = true
       }
       strongSelf.stopProgressIndicator(loadingIndicator)
     }
@@ -63,7 +59,7 @@ class SurveyPageViewController: UIPageViewController {
   @objc func refreshSurveys() {
     pageDataSource.pages.removeAll()
     currentPage = 1
-    pageControl.currentPage = 0
+    currentSurvey = 0
     getSurveys()
   }
   
@@ -87,12 +83,14 @@ class SurveyPageViewController: UIPageViewController {
   }
   
   private func setCurrentPage() {
-    guard pageControl.currentPage < pageDataSource.pages.count else { return }
-    let controller = pageDataSource.pages[pageControl.currentPage]
+    let numberOfTotalPages = pageDataSource.pages.count
+    guard currentSurvey < numberOfTotalPages else { return }
+    let controller = pageDataSource.pages[currentSurvey]
       setViewControllers([controller],
                          direction: .forward,
                          animated: false,
                          completion: nil)
+    pageControl.setCurrentPage(currentSurvey, totalNumberOfPages: numberOfTotalPages)
   }
 }
 
@@ -103,8 +101,8 @@ extension SurveyPageViewController: UIPageViewControllerDelegate {
     if finished && completed,
       let viewController = pageViewController.viewControllers?.first as? SurveyCardViewController,
       let index = viewController.pageIndex {
-      pageControl.currentPage = index
-      //
+      pageControl.setCurrentPage(index, totalNumberOfPages: pageDataSource.pages.count)
+      currentSurvey = index
       if index == pageDataSource.pages.count - 1 {
         getSurveys()
       }
