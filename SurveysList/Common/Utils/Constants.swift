@@ -6,9 +6,10 @@
 //  Copyright © 2019 Nimble. All rights reserved.
 //
 
-import Foundation
-
-enum K {
+struct K {
+  static let pageControlLimit = 20
+  static let perPage = 5
+  
   enum Storyboards: String {
     case surveys = "Surveys"
   }

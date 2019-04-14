@@ -8,7 +8,11 @@
 
 import Foundation
 
-class AuthenticationService: BaseService {
+protocol AuthenticationServiceProtocol: class {
+  func renewToken(completion: @escaping ()->())
+}
+
+class AuthenticationService: BaseService, AuthenticationServiceProtocol {
   func renewToken(completion: @escaping ()->()) {
     refreshToken(urlString: "oauth/token") { response in
       switch response {

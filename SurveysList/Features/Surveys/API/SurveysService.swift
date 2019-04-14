@@ -15,11 +15,11 @@ protocol SurveyServiceProtocol: class {
   ///   - page: number of the current page for request (pagination)
   ///   - perPage: number of elements to fetch on the request
   ///   - completion: Completion block to execute after the request finished
-  func getSurveys(page: Int?, perPage: Int?, completion: @escaping (_ success: Result<[Survey]>) -> Void)
+  func getSurveys(page: Int?, perPage: Int?, completion: @escaping (_ success: [Survey]) -> Void)
 }
 
 class SurveyService: BaseService, SurveyServiceProtocol {
-  func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: @escaping (_ success: Result<[Survey]>) -> Void) {
+  func getSurveys(page: Int?, perPage: Int?, completion: @escaping ([Survey]) -> Void) {
     var parameters: [String: AnyObject] = [:]
     if let page = page {
       parameters["page"] = page as AnyObject
@@ -27,7 +27,14 @@ class SurveyService: BaseService, SurveyServiceProtocol {
     if let perPage = perPage {
       parameters["per_page"] = perPage as AnyObject
     }
-    request(HTTPMethod.get, urlString: "surveys.json", parameters: parameters, completion: completion)
+    request(HTTPMethod.get, urlString: "surveys.json", parameters: parameters) { (result: Result<[Survey]>) in
+      switch result {
+      case .success(let surveys):
+        completion(surveys)
+      case .failure:
+        break
+      }
+    }
   }
 }
 

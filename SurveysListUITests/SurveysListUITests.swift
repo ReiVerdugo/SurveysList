@@ -47,17 +47,29 @@ class SurveysListUITests: XCTestCase {
   
   /// Tests that after swipping to the bottom of the pages, a new request is done
   func test_PaginationRequest() {
+    let pageControlSizeLimit = K.pageControlLimit
     let pageIndicator = app.pageIndicators.firstMatch
     let pageControlExists = pageIndicator.waitForExistence(timeout: 10)
     XCTAssert(pageControlExists)
-    
-    let numberOfPages = 5
-    for _ in 1...numberOfPages-1 {
+    let perPage = K.perPage
+    let pageOfRequest = perPage - 1
+    for _ in 1...pageOfRequest {
       app.swipeUp()
     }
     sleep(5)
-    let expectedNumberOfPages = 10
-    let expectedValue = "page \(numberOfPages) of \(expectedNumberOfPages)"
+    // If the number of pages is less than the limit, it will keep as it is
+    // Otherwise, the number of pages will be the limit
+    let expectedNumberOfPages = (perPage * 2) <= pageControlSizeLimit
+      ? perPage * 2 : pageControlSizeLimit
+    
+    // If the number of pages is less than the limit, it will keep as it is
+    // Otherwise, we calculated dividing between the number of items per bullet
+    let expectedCurrentPage = (perPage * 2) <= pageControlSizeLimit
+      ? pageOfRequest
+      : perPage/((perPage * 2)/pageControlSizeLimit)
+    
+    // We add 1 as the page values on UI test start from 1
+    let expectedValue = "page \(expectedCurrentPage+1) of \(expectedNumberOfPages)"
     XCTAssertEqual(pageIndicator.value as? String, expectedValue)
   }
   
@@ -71,7 +83,8 @@ class SurveysListUITests: XCTestCase {
     let pageControlExists = pageIndicator.waitForExistence(timeout: 10)
     XCTAssert(pageControlExists)
     
-    let expectedNumberOfPages = 5
+    let expectedNumberOfPages = K.perPage <= K.pageControlLimit
+      ? K.perPage : K.pageControlLimit
     let expectedValue = "page 1 of \(expectedNumberOfPages)"
     XCTAssertEqual(pageIndicator.value as? String, expectedValue)
   }

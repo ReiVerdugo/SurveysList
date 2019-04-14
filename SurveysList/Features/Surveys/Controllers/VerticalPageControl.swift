@@ -13,6 +13,7 @@ class VerticalPageControl: UIPageControl {
   let kPageControlWidth: CGFloat = 20
   let kPageControlRightMargin: CGFloat = 8
   let kPageControlHeight: CGFloat = 30
+  let kSizeLimit = K.pageControlLimit
 
   // MARK: Initializers
   override init(frame: CGRect) {
@@ -63,7 +64,28 @@ class VerticalPageControl: UIPageControl {
     currentPage = 0
   }
   
+  /// If the number of pages is greater than the limit, use the limit
+  /// Otherwise return the number of pages
+  ///
+  /// - Parameter number: number of pages
   func setNumberOfPages(_ number: Int) {
-    numberOfPages = number
+    numberOfPages = number <= kSizeLimit ? number : kSizeLimit
+  }
+  
+  /// If the number of pages is greater than the limit, calculate the current page
+  /// The current page will be the numberOfPage divided by the number of items per
+  /// bullet
+  /// If the number of pages is lower than the limit, assign as it is.
+  ///
+  /// - Parameters:
+  ///   - number: the index of the page
+  ///   - totalNumberOfPages: the total number of pages
+  func setCurrentPage(_ number: Int, totalNumberOfPages: Int) {
+    if totalNumberOfPages <= kSizeLimit {
+      currentPage = number
+    } else {
+      let numElements = totalNumberOfPages/kSizeLimit
+      currentPage = (number / numElements)
+    }
   }
 }
